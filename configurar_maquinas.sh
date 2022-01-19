@@ -22,9 +22,9 @@ do
   echo "Instalando plugin vieux/sshfs en el nodo$i"
   docker-machine ssh nodo$i "sudo docker plugin install --grant-all-permissions vieux/sshfs"
   echo "Creando el volumen de docker en el nodo $i"
-  docker-machine ssh nodo$i "sudo docker volume create --driver vieux/sshfs -o sshcmd=ubuntu@$(ip_privada):/home/ubuntu/volumen -o allow_other -o password=ubuntu volumen-web"
+  docker-machine ssh nodo$i "sudo docker volume create --driver vieux/sshfs -o sshcmd=ubuntu@$ip_privada:/home/ubuntu/volumen -o allow_other -o password=ubuntu volumen-web"
 done
 
 echo "Instalando docker-compose en el nodo 1"
-docker-machine ssh nodo1 "curl -L \"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-$x86_64\" -o /usr/local/bin/docker-compose"
+docker-machine ssh nodo1 "sudo curl -L \"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64\" -o /usr/local/bin/docker-compose"
 docker-machine ssh nodo1 "sudo chmod +x /usr/local/bin/docker-compose"
