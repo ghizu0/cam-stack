@@ -25,8 +25,6 @@ do
   docker-machine ssh nodo$i "sudo docker volume create --driver vieux/sshfs -o sshcmd=ubuntu@$ip_privada:/home/ubuntu/volumen -o allow_other -o password=ubuntu volumen-web"
   echo "Añadiendo el usuario ubuntu al grupo docker en el nodo$i"
   docker-machine ssh nodo$i "sudo usermod -a -G docker ubuntu"
-  echo "añadiendo red compartida en el nodo$i"
-  docker-machine ssh nodo$i "sudo docker network create --driver=overlay shared_net"
 done
 
 echo "Instalando docker-compose en el nodo 1"
